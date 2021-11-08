@@ -8,8 +8,8 @@ function getMusic(i, result){
           <td>${result.content[i].created}</td>
           <td>${result.content[i].description}</td>
           <td>${result.content[i].image}</td>
-          <td>${result.content[i].user.username}</td>
-          <td>${result.content[i].category.name}</td>
+          <td>${result.content[i].user?.username}</td>
+          <td>${result.content[i].category?.name}</td>
           <td><button onclick="editMusic(${result.content[i].id})" type="button" class="btn btn-success">Edit</button></td>
           <td><button onclick="removeMusic(${result.content[i].id})" type="button" class="btn btn-danger">Delete</button></td>
         </tr>`;
@@ -88,7 +88,7 @@ function saveMusic(){
 
     },
     type: "POST",
-    url: "http://localhost:8080/musics",
+    url: `http://localhost:8080/musics`,
     enctype: 'multipart/form-data',
     cache: false,
     processData: false,
