@@ -81,33 +81,53 @@ function removeMusic(id){
 
 
 function saveMusic(){
-  let name = $('#name').val();
-  let created = $('#created').val();
-  let description = $('#description').val();
-  let image = $('#image').val();
-  let category = {
-    id: $('#category').val()
-  }
-  let newMusic = {
-    name: name,
-    created: created,
-    description: description,
-    image: image,
-    category: category,
-  };
-
+  let fileUpload = new FormData($("#addMusic")[0]);
   $.ajax({
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Authorization' : 'Bearer ' + "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTYzNjM2NjU5OSwiZXhwIjo4ODAzNjM2NjU5OX0.7jUVfyp2B9MdXr9QEfoYAWLhvt-rnbEOPlr2G15IYHnbuLLQXw0DQ9_Wg6giElNv2rM7sa7W1YlIaKGR9R4mlg",
+
     },
     type: "POST",
-    data: JSON.stringify(newSmartphone),
-    //tên API
-    url: `http://localhost:8080/musics`,
-    success: console.log('created')
-  });
-  event.preventDefault();
+    url: "http://localhost:8080/musics",
+    enctype: 'multipart/form-data',
+    cache: false,
+    processData: false,
+    contentType: false,
+    timeout : 6000000,
+    data: fileUpload,
+    success: function (data) {
+      console.log("oK")
+    }
+  })
+
+
+  // let name = $('#name').val();
+  // let created = $('#created').val();
+  // let description = $('#description').val();
+  // let image = $('#image').val();
+  // let category = {
+  //   id: $('#category').val()
+  // }
+  // let newMusic = {
+  //   name: name,
+  //   created: created,
+  //   description: description,
+  //   image: image,
+  //   category: category,
+  // };
+  //
+  // $.ajax({
+  //   headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json'
+  //   },
+  //   type: "POST",
+  //   data: JSON.stringify(newSmartphone),
+  //   //tên API
+  //   url: `http://localhost:8080/musics`,
+  //   success: console.log('created')
+  // });
+  // event.preventDefault();
 
 }
 
